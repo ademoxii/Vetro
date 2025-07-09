@@ -1,265 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vetro - Luxury Watches</title>
-  <link rel="icon" href="fav.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&family=Inter:wght@300;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary-color: #081F5C;
-      --light-bg: #EDF1F6;
-      --accent: #C7E0FF;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetro - Luxury Watches</title>
+    <link rel="icon" href="fav.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Inter:wght@300;700&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Luxoorea', serif;
+        }
+        
+        /* Navigation styles */
+        .nav-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            color: #8a9bb8 !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-icon, #vetro-logo {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 0 rgba(8, 31, 92, 0));
+        }
+        
+        .nav-item:hover, .nav-icon:hover, #vetro-logo:hover {
+            filter: drop-shadow(2px 2px 4px rgba(8, 31, 92, 0.5));
+        }
+        
+        #vetro-logo {
+            color: #081F5C;
+            text-shadow: 2px 2px 4px rgba(8, 31, 92, 0.3);
+        }
+        
+        #vetro-logo:hover {
+            text-shadow: 3px 3px 6px rgba(8, 31, 92, 0.5);
+        }
+        
+        /* Watch section styles */
+        .watch-container {
+            position: absolute;
+            left: 206px;
+            top: 325px;
+            width: 307px;
+            height: 374px;
+        }
+        
+        .main-watch {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .watch-frame {
+            position: absolute;
+            width: 150px;
+            height: 243px;
+            left: 79px;
+            top: 117px;
+            border: 2.5px solid #EDF1F6;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .watch-overlay {
+            width: 150px;
+            height: 243px;
+            object-fit: cover;
+            z-index: 2;
+        }
+        
+        .watch-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 325px;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            font-family: Luxoorea;
+            font-weight: 400;
+            z-index: 4;
+        }
+        
+        .watch-decoration {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 320px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 4;
+        }
+        
+        .decoration-line {
+            width: 47px;
+            height: 1px;
+            background: #EDF1F6;
+        }
+        
+        .decoration-dot {
+            width: 4px;
+            height: 4px;
+            border: 1px solid #EDF1F6;
+            border-radius: 50%;
+        }
+        
+        .new-collection {
+            position: absolute;
+            left: 28.5%;
+            transform: translateX(-50%);
+            top: 700px;
+            text-align: center;
+            color: #EDF1F6;
+            font-size: 36px;
+            font-family: Luxoorea;
+            font-weight: 400;
+        }
+        .cart-icon {
+    filter: brightness(0) invert(1); /* White icon by default */
+    transition: filter 0.3s ease;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Libre Caslon Display', serif;
-      background-color: var(--primary-color);
-      color: white;
-      overflow-x: hidden;
-    }
+.watch-icon {
+    transition: all 0.3s ease;
+}
 
-    header, footer, section {
-      padding: 20px;
-    }
+.watch-icon:hover {
+    transform: rotate(-30deg) scale(2);
+    filter: drop-shadow(2px 2px 4px rgba(8, 31, 92, 0.5));
+}
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--light-bg);
-      padding: 1rem 2rem;
-      flex-wrap: wrap;
-    }
+.add-to-cart:hover .cart-icon {
+    filter: brightness(0) saturate(100%) sepia(0%) hue-rotate(190deg) contrast(100%) !important; /* Matches dark blue text color */
+}
 
-    .logo {
-      font-size: 2rem;
-      color: var(--primary-color);
-      font-family: 'Abhaya Libre', serif;
-    }
 
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
 
-    .nav-item {
-      color: var(--primary-color);
-      font-family: 'Abhaya Libre', serif;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
+        .add-to-cart {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: #081F5C;
+    color: white;
+}
 
-    .hero {
-      background: url('hand.png') center/cover no-repeat;
-      text-align: center;
-      padding: 100px 20px;
-    }
+.add-to-cart:hover {
+    background-color: white !important;
+    color: #081F5C !important;
+    transform: scale(1.02);
+}
+        
+        .watch-card {
+            transition: all 0.3s ease;
+        }
+        
+      .feel-every-second {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    filter: drop-shadow(0 0 0 rgba(8, 31, 92, 0));
+}
 
-    .hero h1 {
-      font-size: 2rem;
-      letter-spacing: 0.5rem;
-      text-transform: uppercase;
-    }
+.feel-every-second:hover {
+    filter: drop-shadow(2px 2px 4px rgba(8, 31, 92, 0.5));
+    text-shadow: 3px 3px 6px rgba(8, 31, 92, 0.5);
+}
 
-    .watch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
+.watch-image-container {
+  position: relative;
+}
 
-    .watch-card {
-      background: var(--accent);
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-    }
+.watch-main, .watch-hover {
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+height: 100%;
+object-fit: contain;
+}
 
-    .watch-card img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: contain;
-      transition: 0.3s ease;
-    }
 
-    .watch-card:hover img.watch-main {
-      opacity: 0;
-    }
 
-    .watch-card img.watch-hover {
-      position: absolute;
-      opacity: 0;
-    }
+.watch-card:hover .watch-main {
+  opacity: 0;
+}
 
-    .add-to-cart {
-      margin-top: 1rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+.watch-card:hover .watch-hover {
+  opacity: 1 !important;
+}
 
-    .collection-header {
-      text-align: center;
-      font-size: 2rem;
-      margin: 2rem 0;
-      font-family: 'Abhaya Libre', serif;
-    }
 
-    footer {
-      background: #030A1C;
-      color: white;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      font-size: 0.9rem;
-      padding: 2rem;
-    }
+        
+        #email-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            color: #081F5C;
+            font-size: 20px;
+            font-family: 'Abhaya Libre ExtraBold', serif;
+            font-weight: 800;
+        }
+        
+        #email-input::placeholder {
+            color: #081F5C;
+            opacity: 0.7;
+        }
+        
+        .subscribe-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .subscribe-btn:hover {
+            opacity: 1 !important;
+            background-color: #0a2a7a !important;
+        }
+.add-to-cart .cart-text {
+    color: white;
+}
 
-    .footer-column h4 {
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-    }
+.add-to-cart:hover {
+    background-color: white !important;
+}
 
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
+.add-to-cart:hover .cart-text {
+    color: #081F5C !important;
+}
 
-    .footer-column ul li {
-      margin-bottom: 0.5rem;
-      font-family: 'Inter', sans-serif;
-    }
 
-    .newsletter input[type="email"] {
-      width: 100%;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 5px;
-      margin-top: 0.5rem;
-    }
 
-    .newsletter button {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
 
-    @media (max-width: 600px) {
-      .logo {
-        font-size: 1.5rem;
-      }
-
-      .hero h1 {
-        font-size: 1.2rem;
-        letter-spacing: 0.2rem;
-      }
-    }
-  </style>
+    </style>
+    <link href="https://fonts.cdnfonts.com/css/luxoroera" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/abhaya-libre" rel="stylesheet">
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">Vetro</div>
-    <div class="nav-links">
-      <div class="nav-item">Home</div>
-      <div class="nav-item">Shop</div>
-      <div class="nav-item">Brands</div>
+<div style="width: 100%; min-width: 1280px; height: 3296px; position: relative; background: #081F5C; overflow: hidden; backdrop-filter: blur(2px)">
+  <!-- Header Section -->
+  <div style="width: 100%; height: 512px; left: 0px; top: 0px; position: absolute; background: #EDF1F6"></div>
+  <div style="width: 100%; height: 512px; left: 0px; top: 0px; position: absolute; opacity: 0.99; background: rgba(237, 241, 246, 0); overflow: hidden"></div>
+  
+  <!-- Watch Section -->
+  <div class="watch-container">
+    <img class="main-watch" src="blue.png" alt="Vetro luxury watch">
+    <div class="watch-frame">
+      <img class="watch-overlay" src="gray.png" alt="Vetro watch close-up">
     </div>
-  </header>
+    <div class="watch-title">Seiro</div>
+    <div class="watch-decoration">
+      <div class="decoration-line"></div>
+      <div class="decoration-dot"></div>
+      <div class="decoration-line"></div>
+    </div>
+  </div>
+  
+  <div class="new-collection">New collection</div>
+  
+  <!-- Abstract Design Element -->
+  <div data-property-1="Default" style="width: 209px; height: 209px; left: 860px; top: 302px; position: absolute; overflow: hidden">
+    <div style="width: 71.17px; height: 101.67px; left: 69.67px; top: 54.84px; position: absolute; background: white"></div>
+    <div style="width: 3.23px; height: 3.23px; left: 101.94px; top: 104.07px; position: absolute; background: white"></div>
+  </div>
+  
+  <!-- Slogan -->
+  <div style="left: 912px; top: 560px; position: absolute; color: #081F5C; font-size: 36px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">feel<br/>every<br/>second</div>
+  
+  <!-- Navigation Bar -->
+  <div style="width: 100%; height: 103px; left: 0px; top: 0px; position: absolute; background: #EDF1F6; overflow: hidden">
+    <div data-property-1="Default" style="width: 148px; height: 67px; left: 175px; top: 18px; position: absolute">
+      <div id="vetro-logo" style="left: 0px; top: 0px; position: absolute; color: #081F5C; font-size: 64px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Vetro</div>
+    </div>
+    <div class="nav-item" style="width: 179px; height: 38px; left: 447px; top: 33px; position: absolute">
+      <div style="width: 179px; height: 21.55px; left: 0px; top: 0px; position: absolute; text-align: center; color: #081F5C; font-size: 36px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Home</div>
+    </div>
+    <div class="nav-item" style="width: 179px; height: 38px; left: 626px; top: 33px; position: absolute">
+      <div style="width: 179px; height: 21.55px; left: 0px; top: 0px; position: absolute; text-align: center; color: #081F5C; font-size: 36px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">shop</div>
+    </div>
+    <div class="nav-item" style="width: 179px; height: 38px; left: 805px; top: 33px; position: absolute">
+      <div style="width: 179px; height: 21.55px; left: 0px; top: 0px; position: absolute; text-align: center; color: #081F5C; font-size: 36px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">brands</div>
+    </div>
+    
+    <img class="nav-icon" src="acc.png" alt="Account" style="width: 39px; height: 39px; left: 1079px; top: 35px; position: absolute;">
+    <img class="nav-icon" src="cart.png" alt="Cart" style="width: 39px; height: 39px; left: 1174px; top: 35px; position: absolute;">
+  </div>
+  
+  <!-- Rest of your content remains the same -->
+  <!-- Tagline -->
+  <div style="width: 100%; height: 410px; left: 0; top: 103px; position: absolute; display: flex; justify-content: center; align-items: center; background-image: url('hand.png'); background-size: cover;">
+    <div style="color: white; font-size: 32px; font-family: 'Libre Caslon Display', serif; font-weight: 400; text-transform: uppercase; letter-spacing: 10.88px; text-align: center;">
+      where elegance meets precision
+    </div>
+  </div>
+<div style="position: absolute; left: 880px; top: 363px; width: 150px; height: 300px; display: flex; flex-direction: column;">
+  
+  <!-- Top square with icon -->
+  <div style="background-color: #081F5C; width: 100%; height: 600px; display: flex; justify-content: center; align-items: center;">
+    
+    <img src="watch-icon.png" alt="Watch Icon" class="watch-icon" style="width: 100px; height: 100px;">
+  </div>
 
-  <section class="hero">
-    <h1>Where elegance meets precision</h1>
-  </section>
+  <!-- Bottom square with text -->
+  <div style="background-color: #EDF1F6; width: 100%; height: 600px; display: flex; justify-content: center; align-items: center;">
+    <div class="feel-every-second" style="text-align: center; color: #081F5C; font-size: 25px; font-family: Luxoorea; font-weight: 590; line-height: 1.6; text-transform: uppercase;">
+      FEEL<br>EVERY<br>SECOND
+    </div>
+  </div>
+</div>
 
-  <div class="collection-header">New Collection</div>
 
-  <section class="watch-grid">
-    <div class="watch-card">
-      <img class="watch-main" src="w11.png" alt="Watch Front" />
-      <img class="watch-hover" src="w12.png" alt="Watch Hover" />
-      <h2>Rolex</h2>
-      <p>Daytona</p>
-      <button class="add-to-cart">Add to cart</button>
-    </div>
-    <div class="watch-card">
-      <img class="watch-main" src="w21.png" alt="Watch Front" />
-      <img class="watch-hover" src="w22.png" alt="Watch Hover" />
-      <h2>Omega</h2>
-      <p>Speedmaster</p>
-      <button class="add-to-cart">Add to cart</button>
-    </div>
-    <div class="watch-card">
-      <img class="watch-main" src="w31.png" alt="Watch Front" />
-      <img class="watch-hover" src="w32.png" alt="Watch Hover" />
-      <h2>Tudor</h2>
-      <p>Black Bay GMT</p>
-      <button class="add-to-cart">Add to cart</button>
-    </div>
-  </section>
 
-  <section class="newsletter">
-    <h2 style="text-align: center;">Stay Updated</h2>
-    <div style="max-width: 400px; margin: auto; text-align: center;">
-      <input type="email" placeholder="you@example.com" id="email-input" />
-      <button onclick="subscribe()">Subscribe</button>
-    </div>
-  </section>
 
-  <footer>
-    <div class="footer-column">
-      <h4>Shop</h4>
-      <ul>
-        <li>New Arrivals</li>
-        <li>Collections</li>
-        <li>Best Sellers</li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>About</h4>
-      <ul>
-        <li>Our Story</li>
-        <li>Craftsmanship</li>
-        <li>Legacy</li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>Support</h4>
-      <ul>
-        <li>Contact</li>
-        <li>FAQ</li>
-        <li>Warranty</li>
-      </ul>
-    </div>
-  </footer>
 
-  <script>
-    function subscribe() {
-      const email = document.getElementById('email-input').value;
-      if (email && email.includes('@')) {
-        alert('Thank you for subscribing with: ' + email);
-      } else {
-        alert('Please enter a valid email address');
-      }
-    }
+  <!-- History Section -->
+  <div style="width: 100%; height: 486px; left: 0px; top: 822px; position: absolute; overflow: hidden">
+    <img style="width: 100%; height: auto; left: 0px; top: 0px; position: absolute" src="old.png" />
+    <div style="width: 496px; height: 390px; left: 56px; top: 48px; position: absolute; opacity: 0.77; background: #081F5C; border: 1px #EDF1F6 solid"></div>
+    <div style="width: 392px; left: 108px; top: 97px; position: absolute">
+        <span style="color: #EDF1F6; font-size: 34px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Born in the heart of Italy in</span>
+        <span style="color: #EDF1F6; font-size: 34px; font-family: Aboreto; font-weight: 400; word-wrap: break-word"> 1854</span>
+        <span style="color: #EDF1F6; font-size: 34px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">, Vetro has long stood for timeless elegance and masterful watchmaking.<br/><br/>Each piece reflects a legacy of precision, luxury, and refined Italian craftsmanship </span>
+    </div>
+  </div>
+  
+ <!-- Watch Collection -->
+<div class="watch-card" style="width: 342px; height: 442px; left: 56px; top: 1407px; position: absolute; background: #C7E0FF; overflow: hidden">
+  <div class="watch-image-container" style="width: 195.31px; height: 250px; left: 73px; top: 37px; position: absolute">
+    <img class="watch-main" style="width: 100%; height: 100%; position: absolute" src="w11.png" />
+    <img class="watch-hover" style="width: 100%; height: 100%; position: absolute; opacity: 0" src="w12.png" />
+  </div>
+  <div style="left: 97px; top: 291px; position: absolute; text-align: center; color: #081F5C; font-size: 64px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">rolex</div>
+  <div style="left: 131px; top: 351px; position: absolute; text-align: center; color: #081F5C; font-size: 24px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">daytona</div>
+  <div class="add-to-cart" style="width: 235px; height: 41px; left: 53px; top: 392px; position: absolute; background: #081F5C; overflow: hidden; border-radius: 5px">
+    <img class="cart-icon" src="kart.png" style="width: 22px; height: 22px; position: absolute; left: 190px; top: 9px;">
+    <div class="cart-text" style="left: 21px; top: 8px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: 'Libre Caslon Display', serif; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; word-wrap: break-word">add to cart</div>
+  </div>
+</div>
 
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-      btn.onclick = () => alert('Item added to cart!');
+<div class="watch-card" style="width: 342px; height: 442px; left: 469px; top: 1407px; position: absolute; background: #C7E0FF; overflow: hidden">
+  <div class="watch-image-container" style="width: 195.31px; height: 250px; left: 73px; top: 37px; position: absolute">
+    <img class="watch-main" style="width: 100%; height: 100%; position: absolute" src="w21.png" />
+    <img class="watch-hover" style="width: 100%; height: 100%; position: absolute; opacity: 0" src="w22.png" />
+  </div>
+  <div style="left: 87px; top: 291px; position: absolute; text-align: center; color: #081F5C; font-size: 64px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Omega</div>
+  <div style="left: 120px; top: 351px; position: absolute; text-align: center; color: #081F5C; font-size: 24px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Speedmaster</div>
+  <div class="add-to-cart" style="width: 235px; height: 41px; left: 53px; top: 392px; position: absolute; background: #081F5C; overflow: hidden; border-radius: 5px">
+    <img class="cart-icon" src="kart.png" style="width: 22px; height: 22px; position: absolute; left: 190px; top: 9px;">
+    <div class="cart-text" style="left: 21px; top: 8px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: 'Libre Caslon Display', serif; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; word-wrap: break-word">add to cart</div>
+  </div>
+</div>
+
+<div class="watch-card" style="width: 342px; height: 442px; left: 882px; top: 1407px; position: absolute; background: #C7E0FF; overflow: hidden">
+  <div class="watch-image-container" style="width: 195.31px; height: 250px; left: 73px; top: 37px; position: absolute">
+    <img class="watch-main" style="width: 100%; height: 100%; position: absolute" src="w31.png" />
+    <img class="watch-hover" style="width: 100%; height: 100%; position: absolute; opacity: 0" src="w32.png" />
+  </div>
+  <div style="left: 87px; top: 291px; position: absolute; text-align: center; color: #081F5C; font-size: 64px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">tudor</div>
+  <div style="left: 101px; top: 351px; position: absolute; text-align: center; color: #081F5C; font-size: 24px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">black bay gmt</div>
+  <div class="add-to-cart" style="width: 235px; height: 41px; left: 53px; top: 392px; position: absolute; background: #081F5C; overflow: hidden; border-radius: 5px">
+    <img class="cart-icon" src="kart.png" style="width: 22px; height: 22px; position: absolute; left: 190px; top: 9px;">
+    <div class="cart-text" style="left: 21px; top: 8px; position: absolute; text-align: center; color: white; font-size: 20px; font-family: 'Libre Caslon Display', serif; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; word-wrap: break-word">add to cart</div>
+  </div>
+</div>
+
+  
+  <!-- Why Vetro Section -->
+  <div style="width: 100%; height: 617px; left: 0px; top: 1921px; position: absolute; background:  #081F5C; overflow: hidden">
+    <img style="width: 100%; height: auto; left: 0px; top: 0px; position: absolute" src="inside1.png" />
+    <div style="width: 496px; height: 266px; left: 718px; top: 176px; position: absolute; opacity: 0.77; background: #081F5C; border: 1px #EDF1F6 solid"></div>
+    <div style="width: 392px; left: 770px; top: 198px; position: absolute; color: #EDF1F6; font-size: 48px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">why vetro</div>
+    <div style="width: 392px; left: 770px; top: 266px; position: absolute; color: #EDF1F6; font-size: 32px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">-Handcrafted in Italy<br/>-Sapphire Crystal Glass<br/>-Swiss Mechanical Movements<br/>-Lifetime Precision Guarantee</div>
+  </div>
+  
+  <!-- Newsletter Section -->
+  <div style="width: 100%; height: 474px; left: 0px; top: 2538px; position: absolute; background:  #081F5C; overflow: hidden">
+    <img style="width: 100%; height: auto; left: 0px; top: 0px; position: absolute" src="outside.png" />
+    <div style="width: 496px; height: 177px; left: 49px; top: 148px; position: absolute; opacity: 0.77; background: #081F5C; border: 1px #EDF1F6 solid"></div>
+    <div style="width: 432px; height: 44px; left: 81px; top: 263px; position: absolute; opacity: 0.77; background: white; border-radius: 6px"></div>
+    <div class="subscribe-btn" style="width: 133px; height: 28px; left: 361px; top: 271px; position: absolute; opacity: 0.77; background: #081F5C; border-radius: 6px"></div>
+    <div style="width: 392px; left: 81px; top: 155px; position: absolute; color: #EDF1F6; font-size: 48px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Stay updated</div>
+    <div style="width: 439px; left: 81px; top: 205px; position: absolute; color: #EDF1F6; font-size: 20px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Get updates on new collections and exclusive offers.</div>
+    <div style="width: 79px; left: 388px; top: 274px; position: absolute; text-align: center; color: #EDF1F6; font-size: 20px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">subscribe</div>
+    <div style="width: 217px; left: 117px; top: 275px; position: absolute;">
+        <input id="email-input" type="email" placeholder="oa_bensalem@esi.dz">
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <div style="width: 100%; height: 285px; left: 0px; top: 3012px; position: absolute; background: #030A1C; overflow: hidden">
+    <div data-property-1="Default" style="width: 148px; height: 67px; left: 83px; top: 44px; position: absolute">
+      <div style="left: 0px; top: 0px; position: absolute; color: white; font-size: 64px; font-family: Luxoorea; font-weight: 400; word-wrap: break-word">Vetro</div>
+    </div>
+    <div style="width: 10px; height: 10px; left: 221px; top: 96px; position: absolute; overflow: hidden">
+      <div style="width: 3.56px; height: 4.30px; left: 2.93px; top: 2.82px; position: absolute; background: white"></div>
+      <div style="width: 8.75px; height: 8.75px; left: 0.62px; top: 0.62px; position: absolute; background: white"></div>
+    </div>
+    <div style="width: 177px; height: 19px; left: 357px; top: 83px; position: absolute; color: white; font-size: 20px; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; word-wrap: break-word">shop</div>
+    <div style="width: 222px; height: 118px; left: 357px; top: 135px; position: absolute; color: white; font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 28.80px; letter-spacing: 1.60px; word-wrap: break-word">New Arrivals<br/>Collections<br/>Best Sellers</div>
+   <div style="width: 109px; height: 26px; left: 115px; top: 127px; position: absolute; display: flex; align-items: center; color: white; font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 1; word-wrap: break-word; padding-left: 5px;">
+  vetro
+</div>
+<div style="width: 109px; height: 26px; left: 115px; top: 158px; position: absolute; display: flex; align-items: center; color: white; font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 1; word-wrap: break-word; padding-left: 5px;">
+  vetro_it
+</div>
+<div style="width: 109px; height: 26px; left: 115px; top: 189px; position: absolute; display: flex; align-items: center; color: white; font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 1; word-wrap: break-word; padding-left: 5px;">
+  vetro watches
+</div>
+
+    <div style="width: 222px; height: 118px; left: 589px; top: 135px; position: absolute; color: white; font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 28.80px; letter-spacing: 1.60px; word-wrap: break-word">Our Story<br/>Craftsmanship<br/>Legacy</div>
+    <div style="width: 222px; height: 118px; left: 879px; top: 135px; position: absolute; color: white; font-size: 16px; font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; line-height: 28.80px; letter-spacing: 1.60px; word-wrap: break-word">Contact<br/>FAQ<br/>Warranty</div>
+    <div style="width: 235px; height: 19px; left: 589px; top: 83px; position: absolute; color: white; font-size: 20px; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; word-wrap: break-word">about</div>
+    <div style="width: 234px; height: 19px; left: 879px; top: 83px; position: absolute; color: white; font-size: 20px; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 6px; word-wrap: break-word">support</div>
+    <div style="width: 24px; height: 24px; left: 86px; top: 128px; position: absolute; overflow: hidden">
+      <img src="fb.png" style="width: 20px; height: 20px; position: absolute; left: 3.25px; top: 2px;">
+    </div>
+    <div style="width: 26px; height: 26px; left: 85px; top: 158px; position: absolute; overflow: hidden">
+      <div style="width: 0.91px; height: 0.73px; left: 13.08px; top: 25.07px; position: absolute"></div>
+    <img src="ig.png" style="width: 20px; height: auto; position: absolute; left: 4px; top: 2.5px;">
+    </div>
+    <div style="width: 24px; height: 24px; left: 86px; top: 190px; position: absolute; overflow: hidden">
+      <img src="link.png" style="width: 20px; height: 20px; position: absolute; left: 3.25px; top: 3px;">
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    // Add click event to "Add to Cart" buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            alert('Item added to cart!');
+        });
     });
-  </script>
+    
+    // Add click event to subscribe button
+    document.querySelector('.subscribe-btn').addEventListener('click', function() {
+        const email = document.getElementById('email-input').value;
+        if(email && email.includes('@')) {
+            alert('Thank you for subscribing with: ' + email);
+        } else {
+            alert('Please enter a valid email address');
+        }
+    });
+</script>
 </body>
 </html>
